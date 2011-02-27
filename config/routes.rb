@@ -1,4 +1,10 @@
 Librarian::Application.routes.draw do
+  resources :checkouts
+
+  resources :bookshelves
+
+  resources :books
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
