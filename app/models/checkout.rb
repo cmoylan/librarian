@@ -1,8 +1,8 @@
 class Checkout < ActiveRecord::Base
+  belongs_to :book
+
   validates :borrower, :presence => true
   validates :due, :presence => true
-
-  belongs_to :book
 
 end
 
