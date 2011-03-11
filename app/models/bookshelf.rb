@@ -3,5 +3,10 @@ class Bookshelf < ActiveRecord::Base
 
   validates :location, :presence => true
 
+
+  def display_name
+    "#{location}"
+  end
+
 end
 
