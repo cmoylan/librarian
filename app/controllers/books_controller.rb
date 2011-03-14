@@ -1,4 +1,6 @@
 class BooksController < ApplicationController
+  include ISBN
+
   # GET /books
   # GET /books.xml
   def index
@@ -80,4 +82,16 @@ class BooksController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  # Fetch metadata about the book
+  # GET /books/fetch_metadata
+  def fetch_metadata
+    # TODO: Pass through to metadata service.
+    #       For now, just hit an ISBN API here
+
+    isbn = ISBN.find_isbn
+
+    render :text => isbn
+  end
 end
+

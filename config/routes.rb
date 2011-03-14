@@ -1,9 +1,15 @@
 Librarian::Application.routes.draw do
+  resources :locations
+
   resources :checkouts
 
   resources :bookshelves
 
-  resources :books
+  resources :books do
+    collection do
+      get 'fetch_metadata'
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
