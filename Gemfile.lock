@@ -30,6 +30,8 @@ GEM
     activesupport (3.0.3)
     arel (2.0.9)
     builder (2.1.2)
+    carrierwave (0.5.2)
+      activesupport (~> 3.0)
     columnize (0.3.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
@@ -76,6 +78,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  carrierwave
   mysql2
   rails (= 3.0.3)
   ruby-debug
