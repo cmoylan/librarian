@@ -36,6 +36,8 @@ GEM
     diff-lcs (1.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    faker (0.9.5)
+      i18n (~> 0.4)
     i18n (0.5.0)
     linecache (0.43)
     mail (2.2.15)
@@ -46,6 +48,7 @@ GEM
     mime-types (1.16)
     mysql2 (0.2.6)
     polyglot (0.3.1)
+    populator (1.0.0)
     rack (1.2.1)
     rack-mount (0.6.13)
       rack (>= 1.0.0)
@@ -93,7 +96,9 @@ PLATFORMS
 
 DEPENDENCIES
   carrierwave
+  faker
   mysql2
+  populator
   rails (= 3.0.3)
   rspec
   rspec-rails

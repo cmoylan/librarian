@@ -31,5 +31,7 @@ group :development, :test do
   gem 'ruby-debug'
   gem 'rspec'
   gem 'rspec-rails'
+  gem 'populator'
+  gem 'faker'
 #   gem 'webrat'
 end
