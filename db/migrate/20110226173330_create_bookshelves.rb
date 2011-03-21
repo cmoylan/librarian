@@ -1,6 +1,7 @@
 class CreateBookshelves < ActiveRecord::Migration
   def self.up
     create_table :bookshelves do |t|
+      t.string    :name
       t.string    :location
       t.text      :description
 
