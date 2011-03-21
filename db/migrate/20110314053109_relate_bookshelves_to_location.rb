@@ -1,7 +1,9 @@
 class RelateBookshelvesToLocation < ActiveRecord::Migration
   def self.up
+    remove_column :bookshelves, :location
+
     change_table :bookshelves do |t|
-      t.references :locations
+      t.references :location
     end
   end
 

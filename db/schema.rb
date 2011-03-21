@@ -18,17 +18,16 @@ ActiveRecord::Schema.define(:version => 20110314053109) do
     t.string   "author"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "bookshelves_id"
+    t.integer  "bookshelf_id"
     t.integer  "shelf"
   end
 
   create_table "bookshelves", :force => true do |t|
-    t.string   "location"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "shelves",      :default => 1
-    t.integer  "locations_id"
+    t.integer  "shelves",     :default => 1
+    t.integer  "location_id"
   end
 
   create_table "checkouts", :force => true do |t|
@@ -37,7 +36,7 @@ ActiveRecord::Schema.define(:version => 20110314053109) do
     t.datetime "due"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "books_id"
+    t.integer  "book_id"
   end
 
   create_table "locations", :force => true do |t|
