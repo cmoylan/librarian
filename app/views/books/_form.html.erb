@@ -24,7 +24,7 @@
     <%= f.text_field :isdn %>
   </div>
   <div class="field">
-    <%= collection_select(:book, :bookshelves_id, Bookshelf.all, :id, :display_name, :prompt => true) %>
+    <%= collection_select(:book, :bookshelf_id, Bookshelf.all, :id, :display_name, :prompt => true) %>
   </div>
 
   <div class="actions">

@@ -7,6 +7,7 @@ namespace :db do
     [Book, Bookshelf].each(&:delete_all)
 
     Bookshelf.populate 5 do |bookshelf|
+      bookshelf.name = Populator.words(1..3)
       bookshelf.description = Populator.sentences(2..4)
       bookshelf.shelves = 1..6
 

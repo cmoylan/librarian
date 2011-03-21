@@ -2,7 +2,7 @@
 
 <table>
   <tr>
-    <th>Location</th>
+    <th>Name</th>
     <th>Description</th>
     <th></th>
     <th></th>
@@ -11,7 +11,7 @@
 
 <% @bookshelves.each do |bookshelf| %>
   <tr>
-    <td><%= bookshelf.location %></td>
+    <td><%= bookshelf.name %></td>
     <td><%= bookshelf.description %></td>
     <td><%= link_to 'Show', bookshelf %></td>
     <td><%= link_to 'Edit', edit_bookshelf_path(bookshelf) %></td>
