@@ -1,8 +1,13 @@
 require 'test_helper'
 
 class CheckoutTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
+  test "should not save without borrower" do
+    checkout = Checkout.new :due => 'today'
+    assert !checkout.save
+  end
+
+  test "should not save without due date" do
+    checkout = Checkout.new :borrower => 'me'
+    assert !checkout.save
   end
 end

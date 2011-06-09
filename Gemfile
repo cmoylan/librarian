@@ -8,6 +8,7 @@ gem 'rails', '3.0.3'
 #gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'mysql2'
 gem 'carrierwave'
+gem 'will_paginate'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -29,8 +30,8 @@ gem 'carrierwave'
 # and rake tasks are available in development mode:
 group :development, :test do
   gem 'ruby-debug'
-  gem 'rspec'
-  gem 'rspec-rails'
+  #gem 'rspec'
+  #gem 'rspec-rails'
   gem 'populator'
   gem 'faker'
 #   gem 'webrat'
