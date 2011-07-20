@@ -30,8 +30,8 @@ gem 'will_paginate'
 # and rake tasks are available in development mode:
 group :development, :test do
   gem 'ruby-debug'
-  #gem 'rspec'
-  #gem 'rspec-rails'
+  gem 'rspec'
+  gem 'rspec-rails'
   gem 'populator'
   gem 'faker'
 #   gem 'webrat'
