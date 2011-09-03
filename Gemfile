@@ -11,13 +11,10 @@ gem 'carrierwave'
 gem 'will_paginate'
 
 # Use unicorn as the web server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'
-
-# To use debugger
-# gem 'ruby-debug'
 
 # Bundle the extra gems:
 # gem 'bj'
@@ -29,7 +26,7 @@ gem 'will_paginate'
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
 group :development, :test do
-  gem 'ruby-debug'
+  gem 'ruby-debug19'
   gem 'populator'
   gem 'faker'
   gem 'rspec'
