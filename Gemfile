@@ -10,6 +10,7 @@ gem 'mysql2'
 gem 'carrierwave'
 gem 'will_paginate'
 gem 'haml'
+gem 'haml-rails'
 
 # Use unicorn as the web server
 gem 'unicorn'

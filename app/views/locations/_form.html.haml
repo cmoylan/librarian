@@ -1,0 +1,22 @@
+= form_for @location, :html => {:multipart => true} do |f|
+  - if @location.errors.any?
+    #error_explanation
+      %h2= pluralize(@location.errors.count, "error")
+      prohibited this location from being saved:
+
+      %ul
+        - @location.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :map
+    = f.file_field :map
+    -#= f.hidden_field :map_cache
+  - if @location.map?
+    = image_tag(@location.map.url)
+
+  .actions
+    = f.submit
