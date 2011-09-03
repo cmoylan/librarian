@@ -59,6 +59,7 @@ GEM
       thor (~> 0.14.6)
     guard-rspec (0.4.3)
       guard (>= 0.4.0)
+    haml (3.1.2)
     hike (1.2.1)
     i18n (0.6.0)
     json_pure (1.5.4)
@@ -161,6 +162,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   guard-rspec
+  haml
   libnotify
   mysql2
   populator
