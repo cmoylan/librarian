@@ -1,0 +1,19 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @bookshelf.name
+
+%p 
+  %b Description:
+  = @bookshelf.description
+
+-# unless @bookshelf.location.blank?
+- if false
+  %p 
+    %b Location:
+    -#= @bookshelf.location
+
+= link_to 'Edit', edit_bookshelf_path(@bookshelf)
+|
+= link_to 'Back', bookshelves_path

@@ -1,0 +1,21 @@
+%h1 Listing bookshelves
+
+%table
+  %tr
+    %th Name
+    %th Description
+    %th
+    %th
+    %th
+
+  - @bookshelves.each do |bookshelf|
+    %tr
+      %td= bookshelf.name
+      %td= bookshelf.description
+      %td= link_to 'Show', bookshelf
+      %td= link_to 'Edit', edit_bookshelf_path(bookshelf)
+      %td= link_to 'Destroy', bookshelf, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Bookshelf', new_bookshelf_path
