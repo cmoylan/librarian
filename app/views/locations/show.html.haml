@@ -1,5 +1,8 @@
+-#= select "Bookshelf", "bookshelves", @bookshelves.collect{|b| [b.name, b.id]}
+= select_tag 'bookshelf', options_from_collection_for_select(@bookshelves, 'id', 'name')
+
+%br
+
 - if @location.map?
   = image_tag @location.map.url
 
-- @bookshelves.each do |bookshelf|
-  = bookshelf.name

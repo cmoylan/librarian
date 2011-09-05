@@ -1,3 +1,30 @@
-#boom {
-  background: "#000"
+html {
+  background: #f6f6f6;
+} 
+
+#header {
+  padding:5px 0;
+  height: 45px;
+  background: -moz-linear-gradient(top, #333, #000);
+
+  ul {
+
+  }
+
+  li {
+    list-style: none;
+    display: inline;
+    float: left;
+    margin: 0 15px 0 0;
+    color: #fff;
+
+    a {
+      display: block;
+      color: #ddd;
+    }
+  }
+}
+
+#content {
+  padding: 0 15px 15px;
 }
