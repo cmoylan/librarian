@@ -11,6 +11,13 @@ gem 'carrierwave'
 gem 'will_paginate'
 gem 'haml'
 gem 'haml-rails'
+gem 'jquery-rails'
+
+group :assets do
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'uglifier'
+end
 
 # Use unicorn as the web server
 gem 'unicorn'
