@@ -1,4 +1,4 @@
-# Librian #
+# Librarian #
 
 ## How this will all work (I think): ##
 
