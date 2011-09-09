@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe "CreateLocations" do
   it "creates a new location with a name" do
+
     location = Factory(:location)
     visit new_location_path
     fill_in "Name", :with => location.name
