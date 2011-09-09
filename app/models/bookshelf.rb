@@ -5,12 +5,9 @@ class Bookshelf < ActiveRecord::Base
   validates :name, :presence => true
 
 
-  def display_name
-    "#{name}"
-  end
-
-  def available
+  def available?
     # true if it doesn't belong to a location
+    self.location.nil?
   end
 
 end
