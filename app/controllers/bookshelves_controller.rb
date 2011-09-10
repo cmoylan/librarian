@@ -80,4 +80,29 @@ class BookshelvesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  # POST /locations/:id/assign
+  def assign
+    @bookshelf = Bookshelf.find(params[:available_bookshelf_id])
+    location = Location.find(params[:location_id])
+
+    @bookshelf.location = location
+
+    respond_to do |format|
+      if @bookshelf.save
+        format.html { redirect_to(location, :notice => "Bookshelf added") }
+        format.xml  { head :ok }
+      else
+        format.html {'fail'}
+        format.xml  { render :xml => @bookshelf.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  def unassign
+    @bookshelf = Bookshelf.find(params[:id])
+
+    # remove location
+
+  end
 end

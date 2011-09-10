@@ -1,5 +1,8 @@
 Librarian::Application.routes.draw do
-  resources :locations
+  match '/locations/:location_id/assign' => 'bookshelves#assign', 
+    :via => :post,
+    :as => 'assign_bookshelf'
+  resources :locations 
 
   resources :checkouts
 
