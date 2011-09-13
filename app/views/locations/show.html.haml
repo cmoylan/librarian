@@ -1,12 +1,23 @@
-= form_for :bookshelf, :url => assign_bookshelf_path(@location) do |f|
-  = label 'available_bookshelf_id', "Available Bookshelves"
-  = select_tag 'available_bookshelf_id', 
-    options_from_collection_for_select(@bookshelves.select{ |b| b.available? }, 'id', 'name')
-  = f.submit "Assign to location"
+- available_bookshelves = @bookshelves.select{ |b| b.available? }
 
-= label :location, "Assigned Bookshelves"
-= select_tag 'assigned_bookshelves', 
-  options_from_collection_for_select(@location.bookshelves, 'id', 'name')
+- unless available_bookshelves.empty?
+  = form_for :bookshelf, :url => assign_bookshelf_path(@location) do |f|
+    = label 'available_bookshelf_id', "Available Bookshelves"
+    = select_tag 'available_bookshelf_id',
+      options_from_collection_for_select(available_bookshelves, 'id', 'name')
+    = f.submit "Assign to location"
+- else
+  No available bookshelves
+
+- unless @location.bookshelves.empty?
+  Assigned bookshelves:
+  %ul.actions
+    - @location.bookshelves.each do |b|
+      %li
+        = b.name
+        =link_to "remove", unassign_bookshelf_path(@location, b)
+- else
+  No assigned bookshelves
 
 
 %br

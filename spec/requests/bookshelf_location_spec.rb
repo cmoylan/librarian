@@ -17,6 +17,13 @@ describe "BookshelfLocation" do
 
   it "removes a bookshelf from a location" do
     bookshelf = Factory(:bookshelf_with_location)
-    #assert false
+    location = bookshelf.location
+
+    visit location_path(location)
+    within('.actions') do
+      click_link('remove')
+    end
+
+    Bookshelf.find(bookshelf.id).location.should be_nil
   end
 end

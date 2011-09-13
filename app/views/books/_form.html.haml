@@ -19,7 +19,7 @@
     = f.text_field :isdn
   .field
     = f.label :bookshelf
-    = collection_select(:book, :bookshelf_id, Bookshelf.all, :id, :display_name, :prompt => true)
+    = collection_select(:book, :bookshelf_id, Bookshelf.all, :id, :name, :prompt => true)
 
   .actions
     = f.submit

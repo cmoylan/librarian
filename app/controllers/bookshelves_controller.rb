@@ -100,9 +100,18 @@ class BookshelvesController < ApplicationController
   end
 
   def unassign
-    @bookshelf = Bookshelf.find(params[:id])
+    location = Location.find(params[:location_id])
+    @bookshelf = Bookshelf.find(params[:bookshelf_id])
+    @bookshelf.location = nil
 
-    # remove location
-
+    respond_to do |format|
+      if @bookshelf.save
+        format.html { redirect_to(location, :notice => "Bookshelf removed") }
+        format.xml  { head :ok }
+      else
+        format.html {'fail'}
+        format.xml  { render :xml => @bookshelf.errors, :status => :unprocessable_entity }
+      end
+    end
   end
 end

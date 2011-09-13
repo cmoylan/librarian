@@ -1,8 +1,11 @@
 Librarian::Application.routes.draw do
-  match '/locations/:location_id/assign' => 'bookshelves#assign', 
+  match '/locations/:location_id/assign' => 'bookshelves#assign',
     :via => :post,
     :as => 'assign_bookshelf'
-  resources :locations 
+  match '/locations/:location_id/unassign/:bookshelf_id' => 'bookshelves#unassign',
+    :via => :get,
+    :as => 'unassign_bookshelf'
+  resources :locations
 
   resources :checkouts
 
