@@ -12,6 +12,8 @@ gem 'will_paginate'
 gem 'haml'
 gem 'haml-rails'
 gem 'jquery-rails'
+gem 'execjs'
+gem 'therubyracer'
 
 group :assets do
   gem 'sass-rails'

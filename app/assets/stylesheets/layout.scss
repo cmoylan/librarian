@@ -1,30 +1,61 @@
+/* ----- page layout styles ----- */
 html {
   background: #f6f6f6;
 } 
 
 #header {
-  padding:5px 0;
-  height: 45px;
+  padding:1px 0 0;
+  /*height: 45px;*/
   background: -moz-linear-gradient(top, #333, #000);
 
   ul {
-
+    display: block;
+    margin-bottom: 0;
+    padding: 0 2em;
   }
 
   li {
     list-style: none;
-    display: inline;
+    display: block;
     float: left;
     margin: 0 15px 0 0;
     color: #fff;
 
     a {
       display: block;
+      padding: 5px;
       color: #ddd;
+      background: #333;
+      border: 1px solid #ccc;
+      border-width: 1px 1px 0;
+      border-radius: 4px 4px 0 0;
+    }
+    a:hover {
+      background: #555;
     }
   }
 }
 
-#content {
-  padding: 0 15px 15px;
+#logo {
+  float: right;
+  padding: 8px 15px;
+  font-size: 25px;
+  color: #ccc;
+  text-decoration: none;
 }
+
+#content {
+  padding: 0 2em 1em;
+}
+
+.clearfix:after {
+  content: " ";
+  display: block;
+  height: 0;
+  clear: both;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+/* ----- random elements ----- */
+th { text-align: left; }
