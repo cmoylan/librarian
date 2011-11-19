@@ -6,8 +6,9 @@
   = javascript_include_tag "application"
   = csrf_meta_tag
 
-#header
-  = render :partial => "layouts/header"
+%body
+  #header
+    = render :partial => "layouts/header"
 
-%div{ :id => "content", :class => [controller.controller_name, controller.action_name] }
-  = yield
+  %div{ :id => "content", :class => [controller.controller_name, controller.action_name] }
+    = yield

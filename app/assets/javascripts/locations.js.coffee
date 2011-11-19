@@ -3,7 +3,6 @@ Bookshelf = (args) ->
   availableBookshelves = $('#assignedBookshelves')
   map = $('#locationMap')
   bookshelfJSON = $('#bookshelf_location_json')[0]
-  # sourceJSON
 
   # Functions
   handleClick = (event) ->
