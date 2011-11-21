@@ -114,4 +114,10 @@ class BookshelvesController < ApplicationController
       end
     end
   end
+
+  def update_positions
+    positions = params[:positions]
+    # parse to json
+    # save it on each bookshelf object
+  end
 end

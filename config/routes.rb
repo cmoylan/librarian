@@ -9,7 +9,11 @@ Librarian::Application.routes.draw do
 
   resources :checkouts
 
-  resources :bookshelves
+  resources :bookshelves do
+    collection do
+      post 'update_positions'
+    end
+  end
 
   resources :books do
     collection do

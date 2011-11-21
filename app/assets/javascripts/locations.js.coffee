@@ -11,30 +11,34 @@ Bookshelf = (args) ->
     elm = $(event.target)
 
     if elm.hasClass('bookshelfName')
-      bookshelfId = elm.attr('data-bookshelf_id')
+      initPlacementBox(elm)
 
-      # If the bookshelves box is already present, do nothing.
-      # Determine this using data-bookshelf_id
-      boxId = '#bookshelfPlacementBox'
-      if $(boxId).length > 0
-        console.log('out there')
-        return
 
-      # TODO: break this out into its own function
-      # TODO: add bookshelf name to box
-      # Add the bookshelf placement div to the map
-      placementBox = document.createElement('div')
-      placementBox.id = boxId.replace(/#/, '')
-      placementBox.setAttribute('data-bookshelf_id', bookshelfId)
-      map.append(placementBox)
+  initPlacementBox = (elm) ->
+    bookshelfId = elm.attr('data-bookshelf_id')
 
-      $(boxId).draggable({
-        containment: map
-        stop: recordPosition
-      })
-      $(boxId).resizable({
-        stop: recordPosition
-      })
+    # If the bookshelves box is already present, do nothing.
+    # Determine this using data-bookshelf_id
+    boxId = '#bookshelfPlacementBox-' + bookshelfId
+    if $(boxId).length > 0
+      console.log('out there')
+      return
+
+    # TODO: add bookshelf name to box
+    # Add the bookshelf placement div to the map
+    placementBox = document.createElement('div')
+    placementBox.id = boxId.replace(/#/, '')
+    placementBox.className = 'placementBox'
+    placementBox.setAttribute('data-bookshelf_id', bookshelfId)
+    map.append(placementBox)
+
+    $(boxId).draggable({
+      containment: map
+      stop: recordPosition
+    })
+    $(boxId).resizable({
+      stop: recordPosition
+    })
 
 
   recordPosition = (event, elm) ->
@@ -67,12 +71,27 @@ Bookshelf = (args) ->
     console.log(window.bookshelves_json)
 
 
+  # Defining this on the window class so it can be access from elsewhere
+  window.updatePositions= ->
+    data = $(bookshelfJSONId)[0].value
+    console.log(data)
+    #jQuery.post('/bookshelves/update_positions', data)
+    jQuery.ajax({
+      type: 'POST',
+      url: '/bookshelves/update_positions',
+      data: {
+        positions: data
+      }
+    })
+
+
   # Listeners
   availableBookshelves.bind('click', handleClick)
 
+  # Initializer
   initBookshelves()
-
 
 
 $(document).ready ->
   Bookshelf()
+

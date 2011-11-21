@@ -6,7 +6,9 @@
     = select_tag 'available_bookshelf_id',
       options_from_collection_for_select(available_bookshelves, 'id', 'name')
     = f.submit "Assign to location"
-  %input{ :type => :hidden, :name => "bookshelf_location_json", :id => "bookshelf_location_json", :value => {}.to_json}
+  %input{ :type => :text, :name => "bookshelf_location_json", :id => "bookshelf_location_json", :value => {}.to_json}
+  -#%input{ :type => :hidden, :name => "bookshelf_location_json", :id => "bookshelf_location_json", :value => {}.to_json}
+  %input{ :type => :button, :onclick => 'window.updatePositions()', :value => 'boom' }
 - else
   No available bookshelves
 
