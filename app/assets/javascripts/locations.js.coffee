@@ -2,7 +2,7 @@ Bookshelf = (args) ->
   # Elements
   availableBookshelves = $('#assignedBookshelves')
   map = $('#locationMap')
-  bookshelfJSON = $('#bookshelf_location_json')[0]
+  bookshelfJSONId = '#bookshelf_location_json'
 
   # Functions
   handleClick = (event) ->
@@ -48,7 +48,7 @@ Bookshelf = (args) ->
     y2 = y1 + elmHeight
 
     # Assume json will always be present
-    bookshelfCoords = jQuery.parseJSON(bookshelfJSON.value)
+    bookshelfCoords = jQuery.parseJSON($(bookshelfJSONId)[0].value)
     bookshelfCoords[bookshelfId] = {
       'x1': x1,
       'y1': y1,
@@ -56,7 +56,7 @@ Bookshelf = (args) ->
       'y2': y2,
     }
 
-    bookshelfJSON.value = JSON.stringify(bookshelfCoords)
+    $(bookshelfJSONId)[0].value = JSON.stringify(bookshelfCoords)
 
 
   initBookshelves = ->
