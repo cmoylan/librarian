@@ -116,7 +116,6 @@ class BookshelvesController < ApplicationController
   end
 
   def update_positions
-    # TODO: return something
     positions = ActiveSupport::JSON.decode(params[:positions])
 
     positions.keys.each do |key|

@@ -109,6 +109,10 @@ describe BookshelvesController do
       @bookshelf1.x1.should == 170
       @bookshelf2.y2.should == 108
     end
+
+    #it "should retry if there are any errors" do
+    #  pending "might be nice in the future"
+    #end
   end
 end
 
