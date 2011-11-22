@@ -58,5 +58,57 @@ describe BookshelvesController do
     end
   end
 
+  describe "POST update_positions" do
+    before :all do
+      Bookshelf.destroy_all
+
+      @json = %[{
+        "1":{
+          "x1":170,
+          "y1":122,
+          "x2":374,
+          "y2":326
+        },
+        "2":{
+          "x1":164,
+          "y1":50,
+          "x2":308,
+          "y2":108
+        }
+      }]
+
+      @parsed_json = {
+        "1" => {
+          :x1 => 170,
+          :y1 => 122,
+          :x2 => 374,
+          :y2 => 326
+        },
+        "2" => {
+          :x1 => 164,
+          :y1 => 50,
+          :x2 => 308,
+          :y2 => 108
+        }
+      }
+
+      @bookshelf1 = Factory(:bookshelf, :id => 1, :x1 => 666)
+      @bookshelf2 = Factory(:bookshelf, :id => 2, :y2 => 23)
+    end
+
+    it "should update each bookshelf's positions" do
+      ActiveSupport::JSON.should_receive(:decode)
+        .with(@json)
+        .and_return(@parsed_json)
+
+      Bookshelf.should_receive(:find).with("1").and_return(@bookshelf1)
+      Bookshelf.should_receive(:find).with("2").and_return(@bookshelf2)
+
+      post :update_positions, :positions => @json
+
+      @bookshelf1.x1.should == 170
+      @bookshelf2.y2.should == 108
+    end
+  end
 end
 

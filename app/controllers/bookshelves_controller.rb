@@ -116,8 +116,15 @@ class BookshelvesController < ApplicationController
   end
 
   def update_positions
-    positions = params[:positions]
-    # parse to json
-    # save it on each bookshelf object
+    # TODO: return something
+    positions = ActiveSupport::JSON.decode(params[:positions])
+
+    positions.keys.each do |key|
+      bookshelf = Bookshelf.find(key)
+      bookshelf.update_attributes(positions[key])
+      bookshelf.save
+    end
+
+    render :text => 'done'
   end
 end
