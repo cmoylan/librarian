@@ -47,3 +47,7 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'libnotify'
 end
+
+group :development do
+  gem 'rocco'
+end

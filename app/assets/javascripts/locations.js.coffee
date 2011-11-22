@@ -6,17 +6,15 @@ Bookshelf = (args) ->
 
   # Functions
   handleClick = (event) ->
-    console.log('boom')
-    # TODO: event delegation
+    console.log('handling click')
     elm = $(event.target)
 
     if elm.hasClass('bookshelfName')
-      initPlacementBox(elm)
+      bookshelfId = elm.attr('data-bookshelf_id')
+      initPlacementBox(bookshelfId)
 
 
-  initPlacementBox = (elm) ->
-    bookshelfId = elm.attr('data-bookshelf_id')
-
+  initPlacementBox = (bookshelfId, coords) ->
     # If the bookshelves box is already present, do nothing.
     # Determine this using data-bookshelf_id
     boxId = '#bookshelfPlacementBox-' + bookshelfId
@@ -39,6 +37,9 @@ Bookshelf = (args) ->
     $(boxId).resizable({
       stop: recordPosition
     })
+
+    # TODO: if coords are passed in, do a bunch of math and position the box
+    #console.log($(boxId).position())
 
 
   recordPosition = (event, elm) ->
@@ -63,16 +64,21 @@ Bookshelf = (args) ->
     $(bookshelfJSONId)[0].value = JSON.stringify(bookshelfCoords)
 
 
-  initBookshelves = ->
+  initBookshelves = (bookshelves) ->
     # TODO: position all of the bookshelves when the page loads
     # For each bookshelf create a draggable/resizeable element
     # That is, if the bookshelf has already been positioned
     # Otherwise, do nothing
-    console.log(window.bookshelves_json)
+    console.log(bookshelves)
+    for bookshelf in bookshelves
+      do (bookshelf) ->
+        bookshelf = bookshelf['bookshelf']
+        #initPlacementBox(bookshelf.id)
+        console.log(bookshelf)
 
 
   # Defining this on the window class so it can be access from elsewhere
-  window.updatePositions= ->
+  window.updatePositions = ->
     data = $(bookshelfJSONId)[0].value
     console.log(data)
     #jQuery.post('/bookshelves/update_positions', data)
@@ -89,7 +95,8 @@ Bookshelf = (args) ->
   availableBookshelves.bind('click', handleClick)
 
   # Initializer
-  initBookshelves()
+  initBookshelves(window.bookshelves_json)
+  window.initBookshelves = initBookshelves
 
 
 $(document).ready ->
