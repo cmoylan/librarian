@@ -1,25 +1,33 @@
+# The **Bookshelf** closure manages the positioning of Bookshelves within
+# a Location.
 Bookshelf = (args) ->
   # Elements
+  # --------
+  # Set up some selectors that will be useful to multiple subfunctions within
+  # the closure.
   availableBookshelves = $('#assignedBookshelves')
   map = $('#locationMap')
   bookshelfJSONId = '#bookshelf_location_json'
 
   # Functions
+  # ---------
+  # Define subfunctions
   handleClick = (event) ->
-    console.log('handling click')
     elm = $(event.target)
 
+    # Delegate to the `placementBox` function
     if elm.hasClass('bookshelfName')
       bookshelfId = elm.attr('data-bookshelf_id')
       initPlacementBox(bookshelfId)
 
 
+  # Position a bookshelf within a location. If coordinates are passed in,
+  # initialize the bookshelf at those coordinates.
   initPlacementBox = (bookshelfId, coords) ->
     # If the bookshelves box is already present, do nothing.
     # Determine this using data-bookshelf_id
     boxId = '#bookshelfPlacementBox-' + bookshelfId
     if $(boxId).length > 0
-      console.log('out there')
       return
 
     # TODO: add bookshelf name to box
@@ -28,8 +36,20 @@ Bookshelf = (args) ->
     placementBox.id = boxId.replace(/#/, '')
     placementBox.className = 'placementBox'
     placementBox.setAttribute('data-bookshelf_id', bookshelfId)
+
+    # If coordinates are passed in, position the bookshelf appropriately on the
+    # map. Do some math to get width/height from x2/y2.
+    if (coords)
+      placementBox.style.position = 'absolute'
+      placementBox.style.left = coords.x1 + 'px'
+      placementBox.style.top = coords.y1 + 'px'
+      placementBox.style.width = (coords.x2 - coords.x1) + 'px'
+      placementBox.style.height = (coords.y2 - coords.y1) + 'px'
+
     map.append(placementBox)
 
+    # Initialize jQueryUI draggable and resizeable on the placementBox. Keep it
+    # contained within the map.
     $(boxId).draggable({
       containment: map
       stop: recordPosition
@@ -38,10 +58,8 @@ Bookshelf = (args) ->
       stop: recordPosition
     })
 
-    # TODO: if coords are passed in, do a bunch of math and position the box
-    #console.log($(boxId).position())
 
-
+  # After a bookshelf has been positioned or resized, record it's coordinates.
   recordPosition = (event, elm) ->
     bookshelfId = elm.helper.attr('data-bookshelf_id')
     elmWidth = elm.helper.context.offsetWidth
@@ -61,27 +79,30 @@ Bookshelf = (args) ->
       'y2': y2,
     }
 
+    # Replace the old JSON string with the new one containing the updated
+    # position. This is stored in a hidden input so that it can be submitted to
+    # the server for processing/storage.
     $(bookshelfJSONId)[0].value = JSON.stringify(bookshelfCoords)
 
 
   initBookshelves = (bookshelves) ->
-    # TODO: position all of the bookshelves when the page loads
-    # For each bookshelf create a draggable/resizeable element
-    # That is, if the bookshelf has already been positioned
-    # Otherwise, do nothing
-    console.log(bookshelves)
+    # Create a draggable/resizable element representing a bookshelf within the
+    # map element.
     for bookshelf in bookshelves
       do (bookshelf) ->
         bookshelf = bookshelf['bookshelf']
-        #initPlacementBox(bookshelf.id)
-        console.log(bookshelf)
+        initPlacementBox(bookshelf.id, {
+          x1: bookshelf.x1
+          y1: bookshelf.y1
+          x2: bookshelf.x2
+          y2: bookshelf.y2
+        })
 
 
   # Defining this on the window class so it can be access from elsewhere
+  # TODO: do not hardcode the URL here
   window.updatePositions = ->
     data = $(bookshelfJSONId)[0].value
-    console.log(data)
-    #jQuery.post('/bookshelves/update_positions', data)
     jQuery.ajax({
       type: 'POST',
       url: '/bookshelves/update_positions',
@@ -96,7 +117,6 @@ Bookshelf = (args) ->
 
   # Initializer
   initBookshelves(window.bookshelves_json)
-  window.initBookshelves = initBookshelves
 
 
 $(document).ready ->
