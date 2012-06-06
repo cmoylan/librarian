@@ -84,6 +84,9 @@ Bookshelf = (args) ->
     # the server for processing/storage.
     $(bookshelfJSONId)[0].value = JSON.stringify(bookshelfCoords)
 
+    # Send the new placement and coordinates back to the server.
+    updatePositions()
+
 
   initBookshelves = (bookshelves) ->
     # Create a draggable/resizable element representing a bookshelf within the
@@ -99,9 +102,9 @@ Bookshelf = (args) ->
         })
 
 
-  # Defining this on the window class so it can be access from elsewhere
+  # Send an ajax request back to Rails with the new bookshelf placement hash.
   # TODO: do not hardcode the URL here
-  window.updatePositions = ->
+  updatePositions = ->
     data = $(bookshelfJSONId)[0].value
     jQuery.ajax({
       type: 'POST',

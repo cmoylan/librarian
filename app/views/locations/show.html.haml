@@ -1,14 +1,14 @@
-- available_bookshelves = @bookshelves.select{ |b| b.available? }
-
-- unless available_bookshelves.empty?
+%h1= @location.name
+- unless @available_bookshelves.empty?
   = form_for :bookshelf, :url => assign_bookshelf_path(@location) do |f|
     = label 'available_bookshelf_id', "Available Bookshelves"
     = select_tag 'available_bookshelf_id',
-      options_from_collection_for_select(available_bookshelves, 'id', 'name')
+      options_from_collection_for_select(@available_bookshelves, 'id', 'name')
     = f.submit "Assign to location"
-  %input{ :type => :text, :name => "bookshelf_location_json", :id => "bookshelf_location_json", :value => {}.to_json}
-  -#%input{ :type => :hidden, :name => "bookshelf_location_json", :id => "bookshelf_location_json", :value => {}.to_json}
-  %input{ :type => :button, :onclick => 'window.updatePositions()', :value => 'boom' }
+  / %input{ :type => :text, :name => "bookshelf_location_json", :id => "bookshelf_location_json", :value => {}.to_json}
+  %input{ :type => :hidden, :name => "bookshelf_location_json", :id => "bookshelf_location_json", :value => {}.to_json}
+  / %input{ :type => :button, :onclick => 'window.updatePositions()', :value => 'boom' }
+
 - else
   No available bookshelves
 
@@ -33,3 +33,4 @@
 -# render bookshelf json data
 :javascript
   var bookshelves_json = #{@location.bookshelves.to_json}
+

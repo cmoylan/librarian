@@ -9,6 +9,7 @@ class LocationsController < ApplicationController
   def show
     @location = Location.find(params[:id])
     @bookshelves = Bookshelf.all
+    @available_bookshelves = Bookshelf.available
 
     respond_to do |format|
       format.html # show.html.erb

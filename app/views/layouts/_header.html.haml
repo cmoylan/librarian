@@ -1,10 +1,10 @@
-%a{:id => "logo", :href => "/"}
+%a{ :id => "logo", :href => root_path }
   Librarian
 
 %ul.clearfix
   %li
-    = link_to "Locations", locations_path
-  %li
     = link_to "Books", books_path
+  %li
+    = link_to "Bookshelves", bookshelves_path
   %li
     = link_to "Checkouts", checkouts_path
