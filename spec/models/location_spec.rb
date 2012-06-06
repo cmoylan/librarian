@@ -1,15 +1,8 @@
 require 'spec_helper'
 
 describe Location do
-  it "should have many bookshelves" do
-    location = Factory(:location)
+  it { should have_many(:bookshelves) }
+  it { should validate_presence_of(:name) }
 
-    1.upto(10) do
-      bookshelf = Factory(:bookshelf)
-      bookshelf.location = location
-      bookshelf.save
-    end
-
-    location.bookshelves.count.should == 10
-  end
 end
+

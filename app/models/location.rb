@@ -1,4 +1,5 @@
 class Location < ActiveRecord::Base
+
   has_many :bookshelves, :class_name => 'Bookshelf'
 
   validates_presence_of :name
@@ -6,3 +7,4 @@ class Location < ActiveRecord::Base
   mount_uploader :map, MapUploader
 
 end
+

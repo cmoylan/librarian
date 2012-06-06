@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe Bookshelf do
+  it { should have_many(:books) }
+  it { should belong_to(:location) }
+  it { should validate_presence_of(:name) }
+
   context ".available" do
     it "should return all available bookshelves" do
       3.times { Factory :bookshelf }
