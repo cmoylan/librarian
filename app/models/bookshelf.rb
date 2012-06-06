@@ -4,6 +4,7 @@ class Bookshelf < ActiveRecord::Base
 
   validates :name, :presence => true
 
+  scope :available, where(:location_id => nil)
 
   def available?
     # true if it doesn't belong to a location
