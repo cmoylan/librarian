@@ -1,4 +1,5 @@
 class Bookshelf < ActiveRecord::Base
+
   has_many :books
   belongs_to :location
 
