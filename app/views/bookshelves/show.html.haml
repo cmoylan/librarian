@@ -1,12 +1,22 @@
+%h1= @bookshelf.name
+
 %p#notice= notice
 
-%p
-  %b Name:
-  = @bookshelf.name
 
 %p 
   %b Description:
   = @bookshelf.description
+
+%h2 Books
+%input{ :type => 'text' }
+%button Add book to shelf
+%ul{ :class => "booklist scroll" }
+  - @bookshelf.books.each do |book|
+    %li
+      = book.title
+      = link_to "remove from shelf", "#"
+
+
 
 -# unless @bookshelf.location.blank?
 - if false
