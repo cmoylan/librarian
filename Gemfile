@@ -14,6 +14,7 @@ gem 'haml-rails'
 gem 'jquery-rails'
 gem 'execjs'
 gem 'therubyracer'
+gem 'simple_form'
 
 group :assets do
   gem 'sass-rails'
